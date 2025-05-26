@@ -68,22 +68,22 @@ services:
             - './vendor/laravel/sail/database/pgsql/create-testing-database.sql:/docker-entrypoint-initdb.d/10-create-testing-database.sql'
         networks:
             - laravel-test-net
-        healthcheck:
-            test:
-                - CMD
-                - pg_isready
-                - '-q'
-                - '-d'
-                - '${DB_DATABASE}'
-                - '-U'
-                - '${DB_USERNAME}'
-            retries: 3
-            timeout: 5s
+        # healthcheck:
+        #     test:
+        #         - CMD
+        #         - pg_isready
+        #         - '-q'
+        #         - '-d'
+        #         - '${DB_DATABASE}'
+        #         - '-U'
+        #         - '${DB_USERNAME}'
+        #     retries: 3
+        #     timeout: 5s
 networks:
     laravel-test-net:
         driver: bridge
 volumes:
-    laravel-test-mysql:
-        driver: local
+    # laravel-test-mysql:
+    #     driver: local
     laravel-test-db:
         driver: local

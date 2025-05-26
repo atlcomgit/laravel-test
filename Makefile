@@ -45,13 +45,25 @@ build:
 up:
 	@sudo docker-compose up -d
 
+# Перезапуск контейнеров докера
+restart:
+	make down
+	make up
+
 # Вход в основной контейнер
 sh:
 	@sudo docker-compose exec ${DOCKER} sh
 
 # Установка зависимостей
+composer-install:
+	# @sudo docker-compose exec ${DOCKER} composer install --prefer-dist
+	composer install --prefer-dist
+
 composer:
-	@sudo docker-compose exec ${DOCKER} composer install --prefer-dist
+	# git config --global --add safe.directory .
+	# @sudo docker-compose exec ${DOCKER} composer update
+	composer update
+	composer dump-autoload
 
 # Генерация ключа приложения
 key:
@@ -72,10 +84,10 @@ migrate-fresh:
 
 # Оптимизация и кеширование приложения
 optimize:
-	sudo chmod a+w -R ./config/*
-	sudo chmod a+w -R ./storage/*
-	sudo rm -f -R ./storage/logs/exceptions/*
-	sudo rm -f -R ./storage/tests/*
+	@sudo chmod a+w -R ./config/*
+	@sudo chmod a+w -R ./storage/*
+	@sudo rm -f -R ./storage/logs/exceptions/*
+	@sudo rm -f -R ./storage/tests/*
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan config:clear
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan cache:clear
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan clear-compiled
