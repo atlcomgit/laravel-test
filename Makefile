@@ -82,6 +82,12 @@ migrate-fresh:
 	# @sudo docker-compose exec ${DOCKER} php artisan ide-helper:generate
 	# @sudo docker-compose exec ${DOCKER} php artisan ide-helper:models --write
 
+# Запуск отката миграции базы данных
+migrate-rollback:
+	@sudo docker-compose exec ${DOCKER} php artisan migrate:rollback
+	# @sudo docker-compose exec ${DOCKER} php artisan ide-helper:generate
+	# @sudo docker-compose exec ${DOCKER} php artisan ide-helper:models --write
+
 # Оптимизация и кеширование приложения
 optimize:
 	@sudo chmod a+w -R ./config/*

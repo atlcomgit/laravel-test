@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
+use Atlcom\LaravelHelper\Defaults\DefaultCommand;
 use Illuminate\Support\Str;
 
-class TestCommand extends Command
+class TestCommand extends DefaultCommand
 {
     /**
      * The name and signature of the console command.
