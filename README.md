@@ -186,3 +186,5 @@ history
 
 Стоп проект
 sail down
+
+php artisan storage:link

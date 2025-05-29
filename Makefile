@@ -35,15 +35,19 @@ env:
 
 # Остановка контейнеров докера
 down:
-	@sudo docker-compose down
+	# @sudo docker-compose down
+
+	./vendor/bin/sail down
 
 # Создание контейнеров докера
 build:
-	@sudo docker-compose build
+	# @sudo docker-compose build
 
 # Запуск контейнеров докера
 up:
-	@sudo docker-compose up -d
+	# @sudo docker-compose up -d
+
+	./vendor/bin/sail up -d
 
 # Перезапуск контейнеров докера
 restart:
@@ -52,7 +56,7 @@ restart:
 
 # Вход в основной контейнер
 sh:
-	@sudo docker-compose exec ${DOCKER} sh
+	# @sudo docker-compose exec ${DOCKER} sh
 
 # Установка зависимостей
 composer-install:
@@ -67,7 +71,7 @@ composer:
 
 # Генерация ключа приложения
 key:
-	@sudo docker-compose exec ${DOCKER} php artisan key:generate
+	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan key:generate
 
 # Запуск миграции базы данных
 migrate:
@@ -94,6 +98,7 @@ optimize:
 	@sudo chmod a+w -R ./storage/*
 	@sudo rm -f -R ./storage/logs/exceptions/*
 	@sudo rm -f -R ./storage/tests/*
+	
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan config:clear
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan cache:clear
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan clear-compiled
@@ -115,6 +120,16 @@ update:
 	make migrate
 	make optimize
 
+route_list:
+	./vendor/bin/sail artisan route:list
 # ______________________________________________________________________________________________________________________
 # КОНСОЛЬНЫЕ КОМАНДЫ
 
+command-cleanup-http-logs:
+	./vendor/bin/sail artisan cleanup:http_logs
+
+command-cleanup-model-logs:
+	./vendor/bin/sail artisan cleanup:model_logs
+
+command-cleanup-route-logs:
+	./vendor/bin/sail artisan cleanup:route_logs
