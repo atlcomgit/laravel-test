@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Atlcom\LaravelHelper\Defaults\DefaultCommand;
-use Illuminate\Support\Str;
 
 class TestCommand extends DefaultCommand
 {
@@ -26,7 +25,6 @@ class TestCommand extends DefaultCommand
      */
     public function handle()
     {
-        $a = Str::intervalBetween(2, 1, 2, 3);
-        dd($a);
+        sleep(1);
     }
 }

@@ -125,6 +125,9 @@ route_list:
 # ______________________________________________________________________________________________________________________
 # КОНСОЛЬНЫЕ КОМАНДЫ
 
+command-cleanup-console-logs:
+	./vendor/bin/sail artisan cleanup:console_logs
+
 command-cleanup-http-logs:
 	./vendor/bin/sail artisan cleanup:http_logs
 
@@ -133,3 +136,7 @@ command-cleanup-model-logs:
 
 command-cleanup-route-logs:
 	./vendor/bin/sail artisan cleanup:route_logs
+
+command-app-test:
+	./vendor/bin/sail artisan app:test
+
