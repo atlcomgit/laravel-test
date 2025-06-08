@@ -118,7 +118,7 @@
             "dist": {
                 "type": "path",
                 "url": "/home/alek/project/my/laravel-helper",
-                "reference": "bf14f5051d3ddbbb94ef4cbf9e64b3a18262ade4"
+                "reference": "ae5a49b6854b3ed4d9146879929bdad26a76147f"
             },
             "require": {
                 "atlcom/dto": "^2.74",

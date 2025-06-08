@@ -26,11 +26,21 @@ class TestController extends DefaultController
     {
         // $a = DB::select('select * from users');
         // $user = DB::query()->select('select * from users order by id limit 1')->get();
-        // $user = DB::withCache()->select('select * from users order by id limit 1');
+        $user = DB::withCache()->withLog()->select('select * from users order by id limit 1');
 
         // $user = DB::withCache()->statement('select * from users order by id limit 1');
-        // $user = DB::table('users')->withCache()->first();
-        // DB::table('users')->update(['name' => Helper::fakeName()]);
+        // $user = DB::table('users')->withCache()->withLog()->first();
+        // $user = DB::table('users')->withCache()->withLog()->first();
+        // DB::table('users')->withCache()->withLog()->aaa()->update(['name' => Helper::fakeName()]);
+
+        // DB::table('users')->withCache()->withLog()->update(['name' => Helper::fakeName()]);
+        // DB::from('users')->withCache()->withLog()->update(['name' => Helper::fakeName()]);
+        // DB::table('users')->withCache()->withLog()->insert([
+        //     'email' => Helper::fakeEmail(),
+        //     'password' => Helper::fakePassword(),
+        //     'name' => Helper::fakeName(),
+        // ]);
+
         // dd($user);
         // Log::info('name: ' . $user?->name);
 
