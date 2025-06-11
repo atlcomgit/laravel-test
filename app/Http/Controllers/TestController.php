@@ -22,11 +22,11 @@ class TestController extends DefaultController
      * @param TestDto $dto
      * @return string|View|JsonResponse
      */
-    public function test(TestDto $dto): string|View|JsonResponse
+    public function test(TestDto $dto): array|string|View|JsonResponse|User
     {
         // $a = DB::select('select * from users');
         // $user = DB::query()->select('select * from users order by id limit 1')->get();
-        $user = DB::withCache()->withLog()->select('select * from users order by id limit 1');
+        // $user = DB::withCache()->withLog()->select('select * from users order by id limit 1');
 
         // $user = DB::withCache()->statement('select * from users order by id limit 1');
         // $user = DB::table('users')->withCache()->withLog()->first();
@@ -59,12 +59,11 @@ class TestController extends DefaultController
 
         // $user->name = Helper::fakeName();
         // $user->save();
+        // return $user;
 
         // return response()->json(['user_id' => $dto->user_id]);
 
         // return $this->withCache()->view('test', ['test' => '16']);
-        // return $this->withCache()->view(view: 'test', data: ['test' => '17'], ignoreData: ['test']);
-
-        return '';
+        return $this->withCache()->view(view: 'test', data: ['test' => '17'], ignoreData: ['test']);
     }
 }
