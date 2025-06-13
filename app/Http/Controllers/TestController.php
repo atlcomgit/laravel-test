@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Dto\TestDto;
+use App\Jobs\TestJob;
 use App\Models\User;
 use Atlcom\Helper;
 use Atlcom\LaravelHelper\Defaults\DefaultController;
@@ -62,6 +63,9 @@ class TestController extends DefaultController
         // return $user;
 
         // return response()->json(['user_id' => $dto->user_id]);
+
+        dispatch_sync((new TestJob())->withLog());
+        // dispatch_sync(new TestJob());
 
         // return $this->withCache()->view('test', ['test' => '16']);
         return $this->withCache()->view(view: 'test', data: ['test' => '17'], ignoreData: ['test']);
