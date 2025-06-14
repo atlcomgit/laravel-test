@@ -141,5 +141,5 @@ command-cleanup-route-logs:
 	./vendor/bin/sail artisan cleanup:route_logs
 
 command-app-test:
-	./vendor/bin/sail artisan app:test
+	./vendor/bin/sail artisan app:test --telegram --log
 

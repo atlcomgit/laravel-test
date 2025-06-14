@@ -8,7 +8,8 @@ use Atlcom\LaravelHelper\Defaults\DefaultJob;
 
 class TestJob extends DefaultJob
 {
-    // public bool $logEnabled = true;
+    /** Флаг включения логирования очереди */
+    // public bool $withJobLog = false;
 
 
     public function __invoke(): void {}

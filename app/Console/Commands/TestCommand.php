@@ -25,6 +25,6 @@ class TestCommand extends DefaultCommand
      */
     public function handle()
     {
-        sleep(1);
+        $this->telegramComment = 'test';
     }
 }

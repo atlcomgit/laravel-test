@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Dto\TestDto;
 use App\Jobs\TestJob;
+use App\Models\Test;
 use App\Models\User;
 use Atlcom\Helper;
 use Atlcom\LaravelHelper\Defaults\DefaultController;
@@ -21,22 +22,21 @@ class TestController extends DefaultController
      * @link http://laravel-test.local:8800/api/test
      *
      * @param TestDto $dto
-     * @return string|View|JsonResponse
      */
-    public function test(TestDto $dto): array|string|View|JsonResponse|User
+    public function test(TestDto $dto)
     {
         // $a = DB::select('select * from users');
-        // $user = DB::query()->select('select * from users order by id limit 1')->get();
-        // $user = DB::withCache()->withLog()->select('select * from users order by id limit 1');
+        // error $user = DB::query()->select('select * from users order by id limit 1')->get();
+        // $user = DB::withQueryCache()->withQueryLog()->select('select * from users order by id limit 1');
 
-        // $user = DB::withCache()->statement('select * from users order by id limit 1');
-        // $user = DB::table('users')->withCache()->withLog()->first();
-        // $user = DB::table('users')->withCache()->withLog()->first();
-        // DB::table('users')->withCache()->withLog()->aaa()->update(['name' => Helper::fakeName()]);
+        // $user = DB::withQueryCache()->withQueryLog()->statement('select * from users order by id limit 1');
+        // $user = DB::table('users')->withQueryCache()->withQueryLog()->orderByDesc('id')->first();
+        // DB::table('users')->withQueryCache()->withQueryLog()->update(['name' => Helper::fakeName()]);
+        // return $user;
 
-        // DB::table('users')->withCache()->withLog()->update(['name' => Helper::fakeName()]);
-        // DB::from('users')->withCache()->withLog()->update(['name' => Helper::fakeName()]);
-        // DB::table('users')->withCache()->withLog()->insert([
+        // DB::table('users')->withQueryCache()->withQueryLog()->update(['name' => Helper::fakeName()]);
+        // DB::from('users')->withQueryCache()->withQueryLog()->update(['name' => Helper::fakeName()]);
+        // return DB::table('users')->withQueryLog()->insert([
         //     'email' => Helper::fakeEmail(),
         //     'password' => Helper::fakePassword(),
         //     'name' => Helper::fakeName(),
@@ -49,11 +49,12 @@ class TestController extends DefaultController
         // Log::info('isCached: ' . (string)$user->isCached());
         // dd($a);
 
-        // $user = User::withCache()->first();
-        // $user = User::create(['name' => 'asdasd', 'email' => 'sdf', 'password' => '234']);
-        // $user = User::query()->withCache()->first();
-        // $user = User::query()->withCache()->count();
-        // $user = User::query()->withCache()->exists();
+        // return  User::withQueryCache()->withQueryLog()->find(20);
+        // return  User::withQueryCache()->withQueryLog()->first();
+        // return  User::create(['name' => 'asdasd', 'email' => 'sdf', 'password' => '234']);
+        // return  User::query()->withQueryCache()->first();
+        // $user = User::query()->withQueryCache()->count();
+        // $user = User::query()->withQueryCache()->exists();
         // Log::info('name: ' . $user?->name);
         // Log::info('isFromCached: ' . (string)$user->isFromCached());
         // Log::info('isCached: ' . (string)$user->isCached());
@@ -62,12 +63,32 @@ class TestController extends DefaultController
         // $user->save();
         // return $user;
 
+        // return User::first()->fill(['name' => Helper::fakeName()])->withModelLog()->save();
+        // return User::query()->withModelLog()->insert(['email' => Helper::fakeEmail(), 'password' => Helper::fakePassword(), 'name' => Helper::fakeName()]);
+        // return User::query()->withModelLog()->where('id', 20)->update(['name1' => Helper::fakeName()]);
+        // return User::query()->withModelLog()->where('id', User::orderByDesc('id')->first()?->id)->delete();
+
         // return response()->json(['user_id' => $dto->user_id]);
 
-        dispatch_sync((new TestJob())->withLog());
+        // dispatch_sync((new TestJob())->withJobLog());
         // dispatch_sync(new TestJob());
+        // return 'ok';
 
-        // return $this->withCache()->view('test', ['test' => '16']);
-        return $this->withCache()->view(view: 'test', data: ['test' => '17'], ignoreData: ['test']);
+        // return $this->withViewCache()->withViewLog()->view('test', ['test' => '16']);
+        // return $this->withViewLog()->view('test', ['test' => '16']);
+        // return $this->withViewCache()->withViewLog()->view(view: 'test', data: ['test' => '18'], ignoreData: ['test']);
+
+        // Test::insert(['name' => Helper::fakeName()]);
+        // Test::create();
+        // Test::query()->where('id', Test::orderByDesc('id')->first()?->id)->update(['name' => Helper::fakeName()]);
+        // Test::query()->where('id', Test::orderByDesc('id')->first()?->id)->delete();
+        // Test::query()->where('id', Test::orderByDesc('id')->first()?->id)->forceDelete();
+        // $test = Test::orderByDesc('id')->withTrashed()->first();
+        // $test->name = Helper::fakeName();
+        // $test->save();
+        // $test->delete();
+        // $test->restore();
+
+        return 'ok';
     }
 }
