@@ -29,7 +29,9 @@ class TestController extends DefaultController
         // error $user = DB::query()->select('select * from users order by id limit 1')->get();
         // $user = DB::withQueryCache()->withQueryLog()->select('select * from users order by id limit 1');
 
+        // кеш не используется для statement
         // $user = DB::withQueryCache()->withQueryLog()->statement('select * from users order by id limit 1');
+
         // $user = DB::table('users')->withQueryCache()->withQueryLog()->orderByDesc('id')->first();
         // DB::table('users')->withQueryCache()->withQueryLog()->update(['name' => Helper::fakeName()]);
         // return $user;
@@ -78,16 +80,25 @@ class TestController extends DefaultController
         // return $this->withViewLog()->view('test', ['test' => '16']);
         // return $this->withViewCache()->withViewLog()->view(view: 'test', data: ['test' => '18'], ignoreData: ['test']);
 
-        // Test::insert(['name' => Helper::fakeName()]);
-        // Test::create();
-        // Test::query()->where('id', Test::orderByDesc('id')->first()?->id)->update(['name' => Helper::fakeName()]);
-        // Test::query()->where('id', Test::orderByDesc('id')->first()?->id)->delete();
-        // Test::query()->where('id', Test::orderByDesc('id')->first()?->id)->forceDelete();
-        // $test = Test::orderByDesc('id')->withTrashed()->first();
+        // Test::withModelLog()->withQueryLog()->insert(['name' => $name = Helper::fakeName()]);
+        // Test::withModelLog()->withQueryLog()->where('name', $name)->update(['name' => $name = Helper::fakeName()]);
+        // Test::withModelLog()->withQueryLog()->where('name', $name)->delete();
+
+        // $test = Test::withQueryCache()->withQueryLog()->first();
+        // $test = Test::withQueryLog()->create(['name' => $name = Helper::fakeName()]);
+
+        // $test->update(['name' => $name = Helper::fakeName()]);
+        // $test->fill(['name' => $name = Helper::fakeName()])->save();
+        // $test->delete();
+        // $test->withQueryLog()->withModelLog()->forceDelete();
+
+        $test = Test::query()->withQueryLog()->withQueryCache()->orderByDesc('id')->withTrashed()->first();
         // $test->name = Helper::fakeName();
         // $test->save();
         // $test->delete();
         // $test->restore();
+
+        // Test::withQueryLog()->withModelLog()->truncate();
 
         return 'ok';
     }

@@ -9,7 +9,7 @@ class Test extends DefaultModel
 {
     use SoftDeletes;
 
-    protected ?bool $withModelLog = true;
+    protected ?bool $withModelLog = false;
     public $guarded = ['id'];
     public $timestamps = true;
     protected $casts = [

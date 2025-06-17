@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Tests\Unit;
 
 use App\Models\User;
+use Atlcom\LaravelHelper\Defaults\DefaultTest;
 use Atlcom\LaravelHelper\Models\ModelLog;
 use Illuminate\Support\Str;
 use PHPUnit\Framework\Attributes\Test;
-use Tests\TestCase;
 
-class LaravelHelperTest extends TestCase
+class LaravelHelperTest extends DefaultTest
 {
     /**
      * Тестирование Str макросов

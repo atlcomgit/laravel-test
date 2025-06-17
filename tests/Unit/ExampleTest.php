@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Atlcom\LaravelHelper\Defaults\DefaultTest;
 
-class ExampleTest extends TestCase
+class ExampleTest extends DefaultTest
 {
     /**
      * A basic test example.
