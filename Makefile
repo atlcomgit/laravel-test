@@ -98,9 +98,13 @@ optimize:
 	@sudo chmod a+w -R ./storage/*
 	@sudo rm -f -R ./storage/logs/exceptions/*
 	@sudo rm -f -R ./storage/tests/*
+
+	@sudo echo '' > storage/logs/laravel.log
 	
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan config:clear
+	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan route:clear
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan cache:clear
+	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan view:clear
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan clear-compiled
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan config:cache
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan optimize
@@ -120,7 +124,7 @@ update:
 	make migrate
 	make optimize
 
-route_list:
+route-list:
 	./vendor/bin/sail artisan route:list
 # ______________________________________________________________________________________________________________________
 # КОНСОЛЬНЫЕ КОМАНДЫ

@@ -11,6 +11,7 @@ services:
         image: sail-8.4/app
         extra_hosts:
             - 'host.docker.internal:host-gateway'
+            - "laravel-test.local:192.168.1.25"
         ports:
             - '${APP_PORT:-80}:80'
             - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
@@ -28,6 +29,7 @@ services:
         depends_on:
             # - mysql
             - laravel-test-db
+
     # mysql:
     #     container_name: laravel-test-mysql
     #     image: 'mysql/mysql-server:8.0'
@@ -53,6 +55,7 @@ services:
     #             - '-p${DB_PASSWORD}'
     #         retries: 3
     #         timeout: 5s
+
     laravel-test-db:
         container_name: laravel-test-db
         image: 'postgres:17'
@@ -79,6 +82,21 @@ services:
         #         - '${DB_USERNAME}'
         #     retries: 3
         #     timeout: 5s
+
+    laravel-test-redis:
+        image: redis:alpine
+        container_name: laravel-test-redis
+        # restart: unless-stopped
+        volumes: [ "./storage/redis:/data" ]
+        ports:
+            - "${FORWARD_REDIS_PORT:-6385}:6379"
+        networks:
+            - laravel-test-net
+        # healthcheck:
+        #     test: ["CMD", "redis-cli", "ping"]
+        #     retries: 3
+        #     timeout: 5s
+
 networks:
     laravel-test-net:
         driver: bridge
