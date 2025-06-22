@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\LaravelHelper;
+namespace Tests\Feature\LaravelHelper;
 
 use Atlcom\LaravelHelper\Defaults\DefaultTest;
 use Atlcom\LaravelHelper\Enums\HttpLogTypeEnum;
@@ -13,7 +13,7 @@ class HttpLogTest extends DefaultTest
 {
     /**
      * Тестирование метода контроллера
-     * @see \App\Http\Controllers\TestController::testHttpLogIn()
+     * @see \App\Http\Controllers\LaravelHelper\HttpLogTestController::testHttpLogIn()
      *
      * @return void
      */
@@ -30,7 +30,7 @@ class HttpLogTest extends DefaultTest
 
     /**
      * Тестирование метода контроллера
-     * @see \App\Http\Controllers\TestController::testHttpLogOut()
+     * @see \App\Http\Controllers\LaravelHelper\HttpLogTestController::testHttpLogOut()
      *
      * @return void
      */

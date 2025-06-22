@@ -96,6 +96,8 @@ migrate-rollback:
 optimize:
 	@sudo chmod a+w -R ./config/*
 	@sudo chmod a+w -R ./storage/*
+	@sudo chmod a+w .phpunit.result.cache
+
 	@sudo rm -f -R ./storage/logs/exceptions/*
 	@sudo rm -f -R ./storage/tests/*
 

@@ -4,20 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Console\Commands\TestCommand;
 use App\Dto\TestDto;
-use App\Jobs\TestJob;
 use App\Models\Test;
-use App\Models\User;
-use Atlcom\Helper;
 use Atlcom\LaravelHelper\Defaults\DefaultController;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
-use Illuminate\View\View;
 
 class TestController extends DefaultController
 {
@@ -29,34 +18,6 @@ class TestController extends DefaultController
      */
     public function test(TestDto $dto)
     {
-        // $a = DB::select('select * from users');
-        // error $user = DB::query()->select('select * from users order by id limit 1')->get();
-        // $user = DB::withQueryCache()->withQueryLog()->select('select * from users order by id limit 1');
-
-        // кеш не используется для statement
-        // $user = DB::withQueryCache()->withQueryLog()->statement('select * from users order by id limit 1');
-
-        // $user = DB::table('users')->withQueryCache()->withQueryLog()->orderByDesc('id')->first();
-        // DB::table('users')->withQueryCache()->withQueryLog()->update(['name' => Helper::fakeName()]);
-        // return $user;
-
-        // DB::table('users')->withQueryCache()->withQueryLog()->update(['name' => Helper::fakeName()]);
-        // DB::from('users')->withQueryCache()->withQueryLog()->update(['name' => Helper::fakeName()]);
-        // return DB::table('users')->withQueryLog()->insert([
-        //     'email' => Helper::fakeEmail(),
-        //     'password' => Helper::fakePassword(),
-        //     'name' => Helper::fakeName(),
-        // ]);
-
-        // dd($user);
-        // Log::info('name: ' . $user?->name);
-
-        // Log::info('isFromCached: ' . (string)$user->isFromCached());
-        // Log::info('isCached: ' . (string)$user->isCached());
-        // dd($a);
-
-        // return  User::withQueryCache()->withQueryLog()->find(20);
-        // return  User::withQueryCache()->withQueryLog()->first();
         // return  User::create(['name' => 'asdasd', 'email' => 'sdf', 'password' => '234']);
         // return  User::query()->withQueryCache()->first();
         // $user = User::query()->withQueryCache()->count();
@@ -109,88 +70,5 @@ class TestController extends DefaultController
         return $test;
 
         return 'ok';
-    }
-
-
-    private function response(bool $status): Response
-    {
-        return response(['status' => $status], $status ? 200 : 400);
-    }
-
-
-    public function testDependencyInjectionDto(TestDto $dto): Response
-    {
-        $result = $dto->user_id === 123;
-
-        return $this->response($result);
-    }
-
-
-    public function testConsoleLog(): Response
-    {
-        Artisan::call(TestCommand::class, ['--log' => true]);
-
-        return $this->response(true);
-    }
-
-
-    public function testHttpLogIn(): Response
-    {
-        return $this->response(true);
-    }
-
-
-    public function testHttpLogOut(): Response
-    {
-        /** @var \Illuminate\Http\Client\PendingRequest $http */
-        $http = Http::localhost();
-        $response = $http->post('/api/testHttpLogIn');
-
-        return $this->response($response->successful());
-    }
-
-
-    public function testModelLogCreate(): Response
-    {
-        $test = Test::withModelLog()->create(['name' => $name = Helper::fakeName()]);
-
-        return $this->response(true);
-    }
-
-
-    public function testModelLogInsert(): Response
-    {
-        $test = Test::withModelLog()->insert(['name' => $name = Helper::fakeName()]);
-        // $test = Test::withModelLog()->withQueryLog()->where('name', $name)->update(['name' => $name = Helper::fakeName()]);
-        // $test = Test::withModelLog()->withQueryLog()->where('name', $name)->delete();
-
-        return $this->response(true);
-    }
-
-
-    public function testModelLogUpdate(): Response
-    {
-        $test = Test::create(['name' => $name = Helper::fakeName()]);
-        $test = Test::withModelLog()->where('name', $name)->update(['name' => $name = Helper::fakeName()]);
-        // $test = Test::withModelLog()->withQueryLog()->where('name', $name)->delete();
-
-        return $this->response(true);
-    }
-
-
-    public function testModelLogDelete(): Response
-    {
-        $test = Test::create(['name' => $name = Helper::fakeName()]);
-        $test = Test::withModelLog()->where('name', $name)->delete();
-
-        return $this->response(true);
-    }
-
-    public function testModelLogForceDelete(): Response
-    {
-        $test = Test::create(['name' => $name = Helper::fakeName()]);
-        $test = Test::withModelLog()->where('name', $name)->forceDelete();
-
-        return $this->response(true);
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\LaravelHelper;
+namespace Tests\Feature\LaravelHelper;
 
 use Atlcom\LaravelHelper\Defaults\DefaultTest;
 use PHPUnit\Framework\Attributes\Test;
@@ -11,7 +11,7 @@ class DtoTest extends DefaultTest
 {
     /**
      * Тестирование метода контроллера
-     * @see \App\Http\Controllers\TestController::testDependencyInjectionDto()
+     * @see \App\Http\Controllers\LaravelHelper\DtoTestController::testDependencyInjectionDto()
      *
      * @return void
      */

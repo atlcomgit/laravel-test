@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\LaravelHelper;
+namespace Tests\Feature\LaravelHelper;
 
 use Atlcom\LaravelHelper\Defaults\DefaultTest;
 use Illuminate\Support\Str;

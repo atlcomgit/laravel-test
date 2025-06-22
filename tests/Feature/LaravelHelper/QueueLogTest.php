@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\LaravelHelper;
+namespace Tests\Feature\LaravelHelper;
 
 use Atlcom\LaravelHelper\Defaults\DefaultTest;
 use Atlcom\LaravelHelper\Enums\ModelLogTypeEnum;
@@ -10,18 +10,18 @@ use Atlcom\LaravelHelper\Models\ModelLog;
 use PHPUnit\Framework\Attributes\Test;
 
 //?!? 
-class QueryLogTest extends DefaultTest
+class QueueLogTest extends DefaultTest
 {
     /**
      * Тестирование метода контроллера
-     * @see \App\Http\Controllers\TestController::testQueryLog()
+     * @see QueueLogTestController::testQueueLog()
      *
      * @return void
      */
     #[Test]
-    public function testQueryLog(): void
+    public function testQueueLog(): void
     {
-        $this->call('POST', '/api/testing/testQueryLog')
+        $this->call('POST', '/api/testing/testQueueLog')
             ->assertSuccessful();
 
         $model = ModelLog::query()

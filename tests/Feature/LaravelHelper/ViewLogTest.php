@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\LaravelHelper;
+namespace Tests\Feature\LaravelHelper;
 
 use Atlcom\LaravelHelper\Defaults\DefaultTest;
 use Atlcom\LaravelHelper\Enums\ModelLogTypeEnum;
@@ -10,18 +10,18 @@ use Atlcom\LaravelHelper\Models\ModelLog;
 use PHPUnit\Framework\Attributes\Test;
 
 //?!? 
-class RouteLogTest extends DefaultTest
+class ViewLogTest extends DefaultTest
 {
     /**
      * Тестирование метода контроллера
-     * @see \App\Http\Controllers\TestController::testRouteLog()
+     * @see ViewLogTestController::testViewLog()
      *
      * @return void
      */
     #[Test]
-    public function testRouteLog(): void
+    public function testViewLog(): void
     {
-        $this->call('POST', '/api/testing/testRouteLog')
+        $this->call('POST', '/api/testing/testViewLog')
             ->assertSuccessful();
 
         $model = ModelLog::query()

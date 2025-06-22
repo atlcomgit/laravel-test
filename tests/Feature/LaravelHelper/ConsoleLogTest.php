@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\LaravelHelper;
+namespace Tests\Feature\LaravelHelper;
 
 use Atlcom\LaravelHelper\Defaults\DefaultTest;
 use Atlcom\LaravelHelper\Models\ConsoleLog;
@@ -12,7 +12,7 @@ class ConsoleLogTest extends DefaultTest
 {
     /**
      * Тестирование метода контроллера
-     * @see \App\Http\Controllers\TestController::testConsoleLog()
+     * @see \App\Http\Controllers\LaravelHelper\ConsoleLogTestController::testConsoleLog()
      *
      * @return void
      */
