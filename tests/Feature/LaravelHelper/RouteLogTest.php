@@ -5,16 +5,25 @@ declare(strict_types=1);
 namespace Tests\Feature\LaravelHelper;
 
 use Atlcom\LaravelHelper\Defaults\DefaultTest;
-use Atlcom\LaravelHelper\Enums\ModelLogTypeEnum;
-use Atlcom\LaravelHelper\Models\ModelLog;
+use Atlcom\LaravelHelper\Models\RouteLog;
 use PHPUnit\Framework\Attributes\Test;
 
-//?!? 
 class RouteLogTest extends DefaultTest
 {
     /**
+     * @inheritDoc
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        RouteLog::query()->truncate();
+    }
+
+
+    /**
      * Тестирование метода контроллера
-     * @see RouteLogTestController::testRouteLog()
+     * @see \App\Http\Controllers\LaravelHelper\RouteLogTestController::testRouteLog()
      *
      * @return void
      */
@@ -24,10 +33,7 @@ class RouteLogTest extends DefaultTest
         $this->call('POST', '/api/testing/testRouteLog')
             ->assertSuccessful();
 
-        $model = ModelLog::query()
-            ->ofModelType(\App\Models\Test::class)
-            ->ofType(ModelLogTypeEnum::Create)
-            ->first();
-        $this->assertInstanceOf(ModelLog::class, $model);
+        $count = RouteLog::query()->count();
+        $this->assertSame(1, $count);
     }
 }

@@ -35,11 +35,11 @@ class ModelLogTest extends DefaultTest
         $this->call('POST', '/api/testing/testModelLogEloquentCreate')
             ->assertSuccessful();
 
-        $model = ModelLog::query()
+        $count = ModelLog::query()
             ->ofModelType(\App\Models\Test::class)
             ->ofType(ModelLogTypeEnum::Create)
-            ->first();
-        $this->assertInstanceOf(ModelLog::class, $model);
+            ->count();
+        $this->assertSame(1, $count);
     }
 
 
@@ -55,11 +55,11 @@ class ModelLogTest extends DefaultTest
         $this->call('POST', '/api/testing/testModelLogEloquentInsert')
             ->assertSuccessful();
 
-        $model = ModelLog::query()
+        $count = ModelLog::query()
             ->ofModelType(\App\Models\Test::class)
             ->ofType(ModelLogTypeEnum::Create)
-            ->first();
-        $this->assertInstanceOf(ModelLog::class, $model);
+            ->count();
+        $this->assertSame(2, $count);
     }
 
 
@@ -77,11 +77,11 @@ class ModelLogTest extends DefaultTest
         $this->call('POST', '/api/testing/testModelLogEloquentUpdate')
             ->assertSuccessful();
 
-        $model = ModelLog::query()
+        $count = ModelLog::query()
             ->ofModelType(\App\Models\Test::class)
             ->ofType(ModelLogTypeEnum::Update)
-            ->first();
-        $this->assertInstanceOf(ModelLog::class, $model);
+            ->count();
+        $this->assertSame(1, $count);
     }
 
 
@@ -99,11 +99,11 @@ class ModelLogTest extends DefaultTest
         $this->call('POST', '/api/testing/testModelLogEloquentDelete')
             ->assertSuccessful();
 
-        $model = ModelLog::query()
+        $count = ModelLog::query()
             ->ofModelType(\App\Models\Test::class)
             ->ofType(ModelLogTypeEnum::SoftDelete)
-            ->first();
-        $this->assertInstanceOf(ModelLog::class, $model);
+            ->count();
+        $this->assertSame(2, $count);
     }
 
 
@@ -121,11 +121,11 @@ class ModelLogTest extends DefaultTest
         $this->call('POST', '/api/testing/testModelLogEloquentForceDelete')
             ->assertSuccessful();
 
-        $model = ModelLog::query()
+        $count = ModelLog::query()
             ->ofModelType(\App\Models\Test::class)
             ->ofType(ModelLogTypeEnum::Delete)
-            ->first();
-        $this->assertInstanceOf(ModelLog::class, $model);
+            ->count();
+        $this->assertSame(2, $count);
     }
 
 

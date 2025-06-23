@@ -12,6 +12,17 @@ use PHPUnit\Framework\Attributes\Test;
 class HttpLogTest extends DefaultTest
 {
     /**
+     * @inheritDoc
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        HttpLog::query()->truncate();
+    }
+
+
+    /**
      * Тестирование метода контроллера
      * @see \App\Http\Controllers\LaravelHelper\HttpLogTestController::testHttpLogIn()
      *
@@ -23,8 +34,8 @@ class HttpLogTest extends DefaultTest
         $this->call('POST', '/api/testing/testHttpLogIn')
             ->assertSuccessful();
 
-        $model = HttpLog::query()->where('type', HttpLogTypeEnum::In)->first();
-        $this->assertInstanceOf(HttpLog::class, $model);
+        $count = HttpLog::query()->where('type', HttpLogTypeEnum::In)->count();
+        $this->assertSame(1, $count);
     }
 
 
@@ -40,7 +51,7 @@ class HttpLogTest extends DefaultTest
         $this->call('POST', '/api/testing/testHttpLogOut')
             ->assertSuccessful();
 
-        $model = HttpLog::query()->where('type', HttpLogTypeEnum::Out)->first();
-        $this->assertInstanceOf(HttpLog::class, $model);
+        $count = HttpLog::query()->where('type', HttpLogTypeEnum::Out)->count();
+        $this->assertSame(1, $count);
     }
 }

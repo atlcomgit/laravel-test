@@ -11,6 +11,17 @@ use PHPUnit\Framework\Attributes\Test;
 class ConsoleLogTest extends DefaultTest
 {
     /**
+     * @inheritDoc
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        ConsoleLog::query()->truncate();
+    }
+
+
+    /**
      * Тестирование метода контроллера
      * @see \App\Http\Controllers\LaravelHelper\ConsoleLogTestController::testConsoleLog()
      *
@@ -22,7 +33,7 @@ class ConsoleLogTest extends DefaultTest
         $this->call('POST', '/api/testing/testConsoleLog')
             ->assertSuccessful();
 
-        $model = ConsoleLog::query()->where('name', 'TestCommand')->first();
-        $this->assertInstanceOf(ConsoleLog::class, $model);
+        $count = ConsoleLog::query()->where('name', 'TestCommand')->count();
+        $this->assertSame(1, $count);
     }
 }

@@ -6,6 +6,10 @@ use App\Http\Controllers\LaravelHelper\HttpLogTestController;
 use App\Http\Controllers\LaravelHelper\ModelLogTestController;
 use App\Http\Controllers\LaravelHelper\QueryCacheTestController;
 use App\Http\Controllers\LaravelHelper\QueryLogTestController;
+use App\Http\Controllers\LaravelHelper\QueueLogTestController;
+use App\Http\Controllers\LaravelHelper\RouteLogTestController;
+use App\Http\Controllers\LaravelHelper\ViewCacheTestController;
+use App\Http\Controllers\LaravelHelper\ViewLogTestController;
 use App\Http\Controllers\TestController;
 use Atlcom\LaravelHelper\Middlewares\HttpLogMiddleware;
 
@@ -84,8 +88,13 @@ Route::post('testQueryCacheEloquentBuilderDeleteWithLog', [QueryCacheTestControl
 Route::post('testQueryCacheEloquentBuilderTruncateWithoutLog', [QueryCacheTestController::class, 'testQueryCacheEloquentBuilderDeleteWithoutLog']);
 Route::post('testQueryCacheEloquentBuilderTruncateWithLog', [QueryCacheTestController::class, 'testQueryCacheEloquentBuilderDeleteWithLog']);
 
-Route::post('testQueueLog', [TestController::class, 'testQueueLog']);
+Route::post('testQueueLogWithoutLog', [QueueLogTestController::class, 'testQueueLogWithoutLog']);
+Route::post('testQueueLogWithLog', [QueueLogTestController::class, 'testQueueLogWithLog']);
 
-Route::post('testRouteLog', [TestController::class, 'testRouteLog']);
+Route::post('testRouteLog', [RouteLogTestController::class, 'testRouteLog']);
 
-Route::post('testViewLog', [TestController::class, 'testViewLog']);
+Route::post('testViewLogWithoutLog', [ViewLogTestController::class, 'testViewLogWithoutLog']);
+Route::post('testViewLogWithLog', [ViewLogTestController::class, 'testViewLogWithLog']);
+
+Route::post('testViewCacheWithoutLog', [ViewCacheTestController::class, 'testViewCacheWithoutLog']);
+Route::post('testViewCacheWithLog', [ViewCacheTestController::class, 'testViewCacheWithLog']);

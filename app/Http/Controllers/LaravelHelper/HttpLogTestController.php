@@ -26,7 +26,7 @@ class HttpLogTestController extends DefaultController
     {
         /** @var \Illuminate\Http\Client\PendingRequest $http */
         $http = Http::localhost();
-        $response = $http->post('/api/testHttpLogIn');
+        $response = $http->post('/api/testing/testHttpLogIn');
 
         return $this->response($response->successful());
     }
