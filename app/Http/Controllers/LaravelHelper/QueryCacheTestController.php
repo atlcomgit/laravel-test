@@ -8,7 +8,6 @@ use App\Models\Test;
 use Atlcom\Helper;
 use Atlcom\LaravelHelper\Defaults\DefaultController;
 use Illuminate\Http\Response;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class QueryCacheTestController extends DefaultController
@@ -140,6 +139,7 @@ class QueryCacheTestController extends DefaultController
         $result = DB::table('tests')->withQueryCache()->withQueryLog()->get();
         $result = DB::query()->withQueryCache()->withQueryLog()->from('tests')->insert(['name' => Helper::fakeName()]);
 
+        $result = DB::table('tests')->withQueryCache()->withQueryLog()->get();
         $result = DB::table('tests')->withQueryCache()->withQueryLog()->get();
 
         return $this->response((bool)$result);

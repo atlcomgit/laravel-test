@@ -286,7 +286,7 @@ class QueryCacheTest extends DefaultTest
         $this->assertSame(3, $count);
 
         $count = QueryLog::query()->where('is_from_cache', true)->count();
-        $this->assertSame(1, $count);
+        $this->assertSame(2, $count);
     }
 
 

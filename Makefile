@@ -109,7 +109,9 @@ optimize:
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan view:clear
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan clear-compiled
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan config:cache
-	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan optimize
+	# @sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan optimize
+	# //?!?
+	@sudo docker-compose exec ${DOCKER} php artisan optimize
 	# make swagger
 
 # Генерация сваггера
@@ -131,21 +133,33 @@ route-list:
 # ______________________________________________________________________________________________________________________
 # КОНСОЛЬНЫЕ КОМАНДЫ
 
-command-cleanup-all:
-	./vendor/bin/sail artisan cleanup:all
+command-optimize:
+	./vendor/bin/sail artisan lh:optimize --telegram --log --cls
 
-command-cleanup-console-logs:
-	./vendor/bin/sail artisan cleanup:console_logs
+command-clear-cache:
+	./vendor/bin/sail artisan lh:clear:cache --telegram --log --cls
 
-command-cleanup-http-logs:
-	./vendor/bin/sail artisan cleanup:http_logs
+command-cleanup-console-log:
+	./vendor/bin/sail artisan lh:cleanup:console_log --telegram --log --cls
 
-command-cleanup-model-logs:
-	./vendor/bin/sail artisan cleanup:model_logs
+command-cleanup-http-log:
+	./vendor/bin/sail artisan lh:cleanup:http_log --telegram --log --cls
 
-command-cleanup-route-logs:
-	./vendor/bin/sail artisan cleanup:route_logs
+command-cleanup-model-log:
+	./vendor/bin/sail artisan lh:cleanup:model_log --telegram --log --cls
+
+command-cleanup-query-log:
+	./vendor/bin/sail artisan lh:cleanup:query_log --telegram --log --cls
+
+command-cleanup-queue-log:
+	./vendor/bin/sail artisan lh:cleanup:queue_log --telegram --log --cls
+
+command-cleanup-route-log:
+	./vendor/bin/sail artisan lh:cleanup:route_log --telegram --log --cls
+
+command-cleanup-view-log:
+	./vendor/bin/sail artisan lh:cleanup:view_log --telegram --log --cls
 
 command-app-test:
-	./vendor/bin/sail artisan app:test --telegram --log
+	./vendor/bin/sail artisan app:test --telegram --log --cls
 
