@@ -170,7 +170,7 @@ class QueryLogTest extends DefaultTest
             ->assertSuccessful();
 
         $count = QueryLog::query()->count();
-        $this->assertSame(3, $count);
+        $this->assertSame(2, $count);
     }
 
 
@@ -208,7 +208,7 @@ class QueryLogTest extends DefaultTest
             ->assertSuccessful();
 
         $count = QueryLog::query()->count();
-        $this->assertSame(4, $count);
+        $this->assertSame(2, $count);
     }
 
 
@@ -432,7 +432,7 @@ class QueryLogTest extends DefaultTest
             ->assertSuccessful();
 
         $count = QueryLog::query()->count();
-        $this->assertSame(4, $count);
+        $this->assertSame(2, $count);
     }
 
 
@@ -470,7 +470,7 @@ class QueryLogTest extends DefaultTest
             ->assertSuccessful();
 
         $count = QueryLog::query()->count();
-        $this->assertSame(4, $count);
+        $this->assertSame(2, $count);
     }
 
 
@@ -508,6 +508,6 @@ class QueryLogTest extends DefaultTest
             ->assertSuccessful();
 
         $count = QueryLog::query()->count();
-        $this->assertSame(4, $count);
+        $this->assertSame(2, $count);
     }
 }

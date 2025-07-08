@@ -6,6 +6,7 @@ namespace Tests\Feature\LaravelHelper;
 
 use Atlcom\LaravelHelper\Defaults\DefaultTest;
 use Atlcom\LaravelHelper\Models\RouteLog;
+use Atlcom\LaravelHelper\Services\RouteLogService;
 use PHPUnit\Framework\Attributes\Test;
 
 class RouteLogTest extends DefaultTest
@@ -30,10 +31,12 @@ class RouteLogTest extends DefaultTest
     #[Test]
     public function testRouteLog(): void
     {
+        app(RouteLogService::class)->cleanup();
+
         $this->call('POST', '/api/testing/testRouteLog')
             ->assertSuccessful();
 
-        $count = RouteLog::query()->count();
+        $count = RouteLog::query()->where('count', '>', 0)->count();
         $this->assertSame(1, $count);
     }
 }

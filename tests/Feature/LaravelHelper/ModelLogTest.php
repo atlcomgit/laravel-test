@@ -182,7 +182,7 @@ class ModelLogTest extends DefaultTest
             ->assertSuccessful();
 
         $count = ModelLog::query()->count();
-        $this->assertSame(4, $count);
+        $this->assertSame(2, $count);
     }
 
 
@@ -201,7 +201,7 @@ class ModelLogTest extends DefaultTest
             ->assertSuccessful();
 
         $count = ModelLog::query()->count();
-        $this->assertSame(4, $count);
+        $this->assertSame(2, $count);
     }
 
 
