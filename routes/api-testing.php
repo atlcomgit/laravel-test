@@ -4,6 +4,7 @@ use App\Http\Controllers\LaravelHelper\ConsoleLogTestController;
 use App\Http\Controllers\LaravelHelper\DtoTestController;
 use App\Http\Controllers\LaravelHelper\HttpLogTestController;
 use App\Http\Controllers\LaravelHelper\ModelLogTestController;
+use App\Http\Controllers\LaravelHelper\ProfilerLogTestController;
 use App\Http\Controllers\LaravelHelper\QueryCacheTestController;
 use App\Http\Controllers\LaravelHelper\QueryLogTestController;
 use App\Http\Controllers\LaravelHelper\QueueLogTestController;
@@ -98,3 +99,5 @@ Route::post('testViewLogWithLog', [ViewLogTestController::class, 'testViewLogWit
 
 Route::post('testViewCacheWithoutLog', [ViewCacheTestController::class, 'testViewCacheWithoutLog']);
 Route::post('testViewCacheWithLog', [ViewCacheTestController::class, 'testViewCacheWithLog']);
+
+Route::post('testProfilerLog', [ProfilerLogTestController::class, 'testProfilerLog']);
