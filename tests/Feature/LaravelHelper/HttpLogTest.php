@@ -54,4 +54,68 @@ class HttpLogTest extends DefaultTest
         $count = HttpLog::query()->where('type', HttpLogTypeEnum::Out)->count();
         $this->assertSame(1, $count);
     }
+
+
+    /**
+     * Тестирование метода контроллера
+     * @see \App\Http\Controllers\LaravelHelper\HttpLogTestController::testHttpLogInWithCache()
+     *
+     * @return void
+     */
+    #[Test]
+    public function testHttpLogInWithCache(): void
+    {
+        $response = $this->call('POST', '/api/testing/testHttpLogInWithCache');
+        $result1 = $response->getContent();
+
+        $response = $this->call('POST', '/api/testing/testHttpLogInWithCache');
+        $result2 = $response->getContent();
+
+        $this->assertSame($result1, $result2);
+
+        $count = HttpLog::query()
+            ->where('type', HttpLogTypeEnum::In)
+            ->where('is_cached', true)
+            ->count();
+        $this->assertSame(2, $count);
+
+        $count = HttpLog::query()
+            ->where('type', HttpLogTypeEnum::In)
+            ->where('is_from_cache', true)
+            ->count();
+        $this->assertSame(1, $count);
+    }
+
+
+    /**
+     * Тестирование метода контроллера
+     * @see \App\Http\Controllers\LaravelHelper\HttpLogTestController::testHttpLogOutWithCache()
+     *
+     * @return void
+     */
+    #[Test]
+    public function testHttpLogOutWithCache(): void
+    {
+        $response = $this->call('POST', '/api/testing/testHttpLogOutWithCache');
+        $result1 = $response->getContent();
+
+        sleep(1);
+
+        $response = $this->call('POST', '/api/testing/testHttpLogOutWithCache');
+        $result2 = $response->getContent();
+
+        $this->assertSame($result1, $result2);
+
+        $count = HttpLog::query()
+            ->where('type', HttpLogTypeEnum::Out)
+            ->where('is_cached', true)
+            ->count();
+        $this->assertGreaterThan(0, $count);
+
+        $count = HttpLog::query()
+            ->where('type', HttpLogTypeEnum::Out)
+            ->where('is_from_cache', true)
+            ->count();
+        $this->assertSame(1, $count);
+    }
 }

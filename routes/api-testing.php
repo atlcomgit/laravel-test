@@ -12,6 +12,7 @@ use App\Http\Controllers\LaravelHelper\RouteLogTestController;
 use App\Http\Controllers\LaravelHelper\ViewCacheTestController;
 use App\Http\Controllers\LaravelHelper\ViewLogTestController;
 use App\Http\Controllers\TestController;
+use Atlcom\LaravelHelper\Middlewares\HttpCacheMiddleware;
 use Atlcom\LaravelHelper\Middlewares\HttpLogMiddleware;
 
 
@@ -23,6 +24,8 @@ Route::post('testConsoleLog', [ConsoleLogTestController::class, 'testConsoleLog'
 
 Route::post('testHttpLogIn', [HttpLogTestController::class, 'testHttpLogIn'])->middleware(HttpLogMiddleware::class);
 Route::post('testHttpLogOut', [HttpLogTestController::class, 'testHttpLogOut']);
+Route::post('testHttpLogInWithCache', [HttpLogTestController::class, 'testHttpLogInWithCache'])->middleware(HttpCacheMiddleware::class);
+Route::post('testHttpLogOutWithCache', [HttpLogTestController::class, 'testHttpLogOutWithCache']);
 
 Route::post('testModelLogEloquentCreate', [ModelLogTestController::class, 'testModelLogEloquentCreate']);
 Route::post('testModelLogEloquentInsert', [ModelLogTestController::class, 'testModelLogEloquentInsert']);

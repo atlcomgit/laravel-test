@@ -25,8 +25,8 @@ class ViewCacheTestController extends DefaultController
 
     public function testViewCacheWithLog(): Response
     {
-        $result = $this->withViewCache()->withViewLog()->view('test', ['test' => '1']);
-        $result = $this->withViewCache()->withViewLog()->view('test', ['test' => '1']);
+        $result = $this->withCache()->withLog()->view('test', ['test' => '1']);
+        $result = $this->withCache()->withLog()->view('test', ['test' => '1']);
 
         $result = $this->withViewCache()->withViewLog()->view('test', ['test' => '2']);
         $result = $this->withViewCache()->withViewLog()->view('test', ['test' => '2']);

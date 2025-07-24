@@ -30,4 +30,21 @@ class HttpLogTestController extends DefaultController
 
         return $this->response($response->successful());
     }
+
+
+    public function testHttpLogInWithCache(): Response
+    {
+        return response((string)rand(0, 999999999));
+    }
+
+
+    public function testHttpLogOutWithCache(): Response
+    {
+        /** @var \Illuminate\Http\Client\PendingRequest $http */
+        $http = Http::withCache();
+        // $response = $http->retry(5)->get('https://worldtimeapi.org/api/timezone/Etc/UTC');
+        $response = $http->retry(5)->get('https://timeapi.io/api/Time/current/zone?timeZone=UTC');
+
+        return response($response->getBody());
+    }
 }

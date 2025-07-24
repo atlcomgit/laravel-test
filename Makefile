@@ -109,9 +109,8 @@ optimize:
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan view:clear
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan clear-compiled
 	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan config:cache
-	# @sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan optimize
-	# //?!?
-	@sudo docker-compose exec ${DOCKER} php artisan optimize
+	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php -dxdebug.mode=off artisan optimize
+	# @sudo docker-compose exec ${DOCKER} php artisan optimize
 	# make swagger
 
 # Генерация сваггера
