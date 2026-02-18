@@ -8,10 +8,17 @@ use App\Models\Test;
 use Atlcom\Helper;
 use Atlcom\LaravelHelper\Defaults\DefaultController;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class ModelLogTestController extends DefaultController
 {
+    public function __construct()
+    {
+        Config::set('laravel-helper.model_log.enabled', true);
+    }
+
+
     private function response(bool $status): Response
     {
         return response(['status' => $status], $status ? 200 : 404);

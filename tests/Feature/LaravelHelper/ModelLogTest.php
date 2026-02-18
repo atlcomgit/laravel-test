@@ -7,6 +7,7 @@ namespace Tests\Feature\LaravelHelper;
 use Atlcom\LaravelHelper\Defaults\DefaultTest;
 use Atlcom\LaravelHelper\Enums\ModelLogTypeEnum;
 use Atlcom\LaravelHelper\Models\ModelLog;
+use Illuminate\Support\Facades\Config;
 use PHPUnit\Framework\Attributes\Test;
 
 class ModelLogTest extends DefaultTest
@@ -81,7 +82,7 @@ class ModelLogTest extends DefaultTest
             ->ofModelType(\App\Models\Test::class)
             ->ofType(ModelLogTypeEnum::Update)
             ->count();
-        $this->assertSame(2, $count);
+        $this->assertSame(1, $count);
     }
 
 
@@ -103,7 +104,7 @@ class ModelLogTest extends DefaultTest
             ->ofModelType(\App\Models\Test::class)
             ->ofType(ModelLogTypeEnum::SoftDelete)
             ->count();
-        $this->assertSame(2, $count);
+        $this->assertSame(1, $count);
     }
 
 
@@ -125,7 +126,7 @@ class ModelLogTest extends DefaultTest
             ->ofModelType(\App\Models\Test::class)
             ->ofType(ModelLogTypeEnum::Delete)
             ->count();
-        $this->assertSame(2, $count);
+        $this->assertSame(1, $count);
     }
 
 
@@ -182,7 +183,7 @@ class ModelLogTest extends DefaultTest
             ->assertSuccessful();
 
         $count = ModelLog::query()->count();
-        $this->assertSame(2, $count);
+        $this->assertSame(4, $count);
     }
 
 
@@ -201,7 +202,7 @@ class ModelLogTest extends DefaultTest
             ->assertSuccessful();
 
         $count = ModelLog::query()->count();
-        $this->assertSame(2, $count);
+        $this->assertSame(4, $count);
     }
 
 

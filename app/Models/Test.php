@@ -11,7 +11,7 @@ class Test extends DefaultModel
     use HasFactory;
     use SoftDeletes;
 
-    protected ?bool $withModelLog = false;
+    protected ?bool $withModelLog = null;
     public $guarded = ['id'];
     public $timestamps = true;
     protected $casts = [
