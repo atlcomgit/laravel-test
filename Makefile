@@ -129,6 +129,11 @@ update:
 
 route-list:
 	./vendor/bin/sail artisan route:list
+
+# Запуск phpunit тестов
+phpunit:
+	@sudo docker-compose exec -e XDEBUG_MODE=off ${DOCKER} php vendor/bin/phpunit --colors=never --exclude-group ignore --exclude-group ignore-local $(if $(FILTER),--filter="$(FILTER)",) $(if $(TEAMCITY),--teamcity,) $(FILE) $(ARGS)
+
 # ______________________________________________________________________________________________________________________
 # КОНСОЛЬНЫЕ КОМАНДЫ
 

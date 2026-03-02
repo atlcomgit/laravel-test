@@ -7,6 +7,7 @@ namespace Tests\Feature\LaravelHelper;
 use Atlcom\LaravelHelper\Defaults\DefaultTest;
 use Atlcom\LaravelHelper\Enums\HttpLogTypeEnum;
 use Atlcom\LaravelHelper\Models\HttpLog;
+use Illuminate\Support\Facades\Config;
 use PHPUnit\Framework\Attributes\Test;
 
 class HttpLogTest extends DefaultTest
@@ -17,6 +18,10 @@ class HttpLogTest extends DefaultTest
     protected function setUp(): void
     {
         parent::setUp();
+
+        // setConfig() отключает http_log.in.enabled для тестов, восстанавливаем для этого класса
+        Config::set('laravel-helper.http_log.in.enabled', true);
+        Config::set('laravel-helper.http_log.out.enabled', true);
 
         HttpLog::query()->truncate();
     }

@@ -60,7 +60,7 @@ class ModelLogTest extends DefaultTest
             ->ofModelType(\App\Models\Test::class)
             ->ofType(ModelLogTypeEnum::Create)
             ->count();
-        $this->assertSame(2, $count);
+        $this->assertSame(1, $count);
     }
 
 

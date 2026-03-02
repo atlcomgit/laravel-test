@@ -12,7 +12,7 @@ class TestController extends DefaultController
 {
     /**
      * Тестовый роут
-     * @link http://laravel-test.local:8800/api/test
+     * @link http://laravel-test.local:8701/api/test
      *
      * @param TestDto $dto
      */

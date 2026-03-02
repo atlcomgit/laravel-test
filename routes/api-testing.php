@@ -62,8 +62,8 @@ Route::post('testQueryLogEloquentBuilderUpdateWithoutLog', [QueryLogTestControll
 Route::post('testQueryLogEloquentBuilderUpdateWithLog', [QueryLogTestController::class, 'testQueryLogEloquentBuilderUpdateWithLog']);
 Route::post('testQueryLogEloquentBuilderDeleteWithoutLog', [QueryLogTestController::class, 'testQueryLogEloquentBuilderDeleteWithoutLog']);
 Route::post('testQueryLogEloquentBuilderDeleteWithLog', [QueryLogTestController::class, 'testQueryLogEloquentBuilderDeleteWithLog']);
-Route::post('testQueryLogEloquentBuilderTruncateWithoutLog', [QueryLogTestController::class, 'testQueryLogEloquentBuilderDeleteWithoutLog']);
-Route::post('testQueryLogEloquentBuilderTruncateWithLog', [QueryLogTestController::class, 'testQueryLogEloquentBuilderDeleteWithLog']);
+Route::post('testQueryLogEloquentBuilderTruncateWithoutLog', [QueryLogTestController::class, 'testQueryLogEloquentBuilderTruncateWithoutLog']);
+Route::post('testQueryLogEloquentBuilderTruncateWithLog', [QueryLogTestController::class, 'testQueryLogEloquentBuilderTruncateWithLog']);
 
 Route::post('testQueryCacheDbSelectWithoutLog', [QueryCacheTestController::class, 'testQueryCacheDbSelectWithoutLog']);
 Route::post('testQueryCacheDbSelectWithLog', [QueryCacheTestController::class, 'testQueryCacheDbSelectWithLog']);
@@ -89,8 +89,8 @@ Route::post('testQueryCacheEloquentBuilderUpdateWithoutLog', [QueryCacheTestCont
 Route::post('testQueryCacheEloquentBuilderUpdateWithLog', [QueryCacheTestController::class, 'testQueryCacheEloquentBuilderUpdateWithLog']);
 Route::post('testQueryCacheEloquentBuilderDeleteWithoutLog', [QueryCacheTestController::class, 'testQueryCacheEloquentBuilderDeleteWithoutLog']);
 Route::post('testQueryCacheEloquentBuilderDeleteWithLog', [QueryCacheTestController::class, 'testQueryCacheEloquentBuilderDeleteWithLog']);
-Route::post('testQueryCacheEloquentBuilderTruncateWithoutLog', [QueryCacheTestController::class, 'testQueryCacheEloquentBuilderDeleteWithoutLog']);
-Route::post('testQueryCacheEloquentBuilderTruncateWithLog', [QueryCacheTestController::class, 'testQueryCacheEloquentBuilderDeleteWithLog']);
+Route::post('testQueryCacheEloquentBuilderTruncateWithoutLog', [QueryCacheTestController::class, 'testQueryCacheEloquentBuilderTruncateWithoutLog']);
+Route::post('testQueryCacheEloquentBuilderTruncateWithLog', [QueryCacheTestController::class, 'testQueryCacheEloquentBuilderTruncateWithLog']);
 
 Route::post('testQueueLogWithoutLog', [QueueLogTestController::class, 'testQueueLogWithoutLog']);
 Route::post('testQueueLogWithLog', [QueueLogTestController::class, 'testQueueLogWithLog']);
